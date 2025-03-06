@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ServerController">
+    
+    <!-- Top Menu Bar -->
+    <top>
+        <MenuBar style="-fx-background-color: #202225; -fx-padding: 5;">
+            <Menu disable="true" style="-fx-text-fill: white; -fx-font-size: 16px;" text="FAKE DISCORD" />
+        </MenuBar>
+    </top>
+    
+    <!-- Most Left Sidebar (Reused from DirectMessage.fxml) -->
+    <left>
+        <VBox spacing="10" style="-fx-background-color: #202225; -fx-padding: 10; -fx-alignment: top-center;">
+            <!-- Home Button -->
+            <Button fx:id="homeButton" onAction="#goToHome" styleClass="round-button" text="H" />
+            
+            <!-- Button to go to Direct Message -->
+            <Button fx:id="directMessageButton" onAction="#goToDirectMessage" styleClass="round-button" text="D" />
+            
+            <!-- Button to go to Server (Display Only) -->
+            <Button fx:id="serverButton" disable="true" styleClass="round-button" text="S" />
+            
+            <!-- Spacer to push the logout button to the bottom -->
+            <Region VBox.vgrow="ALWAYS" />
+            
+            <!-- Logout Button -->
+            <Button fx:id="logoutButton" onAction="#logout" style="-fx-background-color: #ff5555; -fx-text-fill: white; -fx-shape: 'M 50,25 A 25,25 0 1,1 50,24 Z'; -fx-min-width: 50px; -fx-min-height: 50px;" text="O" />
+        </VBox>
+    </left>
+
+    <!-- Center Content -->
+    <center>
+        <HBox>
+            <!-- Second Sidebar: Server List -->
+            <VBox spacing="10" style="-fx-background-color: #2f3136; -fx-padding: 10; -fx-alignment: top-center; -fx-pref-width: 150;">
+                <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Servers" />
+                <!-- Create Server Section -->
+                <HBox spacing="5">
+                    <TextField fx:id="serverNameField" promptText="Server Name" style="-fx-pref-width: 100;" />
+                    <Button onAction="#createServer" style="-fx-background-color: #5865F2; -fx-text-fill: white; -fx-min-width: 30px;" text="+" />
+                </HBox>
+                <!-- Server List -->
+                <ListView fx:id="serverListView" style="-fx-background-color: #2f3136; -fx-text-fill: white;" />
+            </VBox>
+
+            <!-- Third Sidebar: Channel Management -->
+            <VBox spacing="10" style="-fx-background-color: #2f3136; -fx-padding: 10; -fx-alignment: top-center; -fx-pref-width: 150;">
+                <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Channels" />
+                <HBox spacing="5">
+                    <TextField fx:id="channelNameField" promptText="Name" style="-fx-pref-width: 80;" />
+                    <Button onAction="#createChannel" style="-fx-background-color: #5865F2; -fx-text-fill: white; -fx-min-width: 30px;" text="+" />
+                </HBox>
+                <!-- Channel List -->
+                <ListView fx:id="channelListView" style="-fx-background-color: #2f3136; -fx-text-fill: white;" />
+                <Label style="-fx-text-fill: white; -fx-font-size: 12px;" text="General" />
+            </VBox>
+
+            <!-- Fourth Sidebar: Chat Area -->
+            <VBox spacing="10" style="-fx-background-color: #36393F; -fx-padding: 10; -fx-alignment: top-center; -fx-pref-width: 400;">
+                <Label styleClass="header-label" text="Chat" />
+                <ScrollPane prefHeight="360.0" prefWidth="379.0" styleClass="custom-scroll-pane">
+                    <VBox fx:id="messageContainer" spacing="10" />
+                </ScrollPane>
+                <HBox spacing="10">
+                    <TextField fx:id="messageField" promptText="Type a message..." styleClass="message-field" />
+                    <Button onAction="#sendMessage" styleClass="send-button" text="Send" />
+                </HBox>
+            </VBox>
+
+            <!-- Fifth Sidebar: User List with Roles -->
+            <VBox spacing="10" style="-fx-background-color: #2f3136; -fx-padding: 10; -fx-alignment: top-center; -fx-pref-width: 150;">
+                <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Users" />
+                <!-- Invite User Section -->
+                <HBox spacing="5">
+                    <TextField fx:id="inviteUserField" promptText="Username" style="-fx-pref-width: 80;" />
+                    <Button onAction="#inviteUserToServer" style="-fx-background-color: #5865F2; -fx-text-fill: white; -fx-min-width: 30px;" text="+" />
+                </HBox>
+                <!-- User List -->
+                <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: transparent;">
+                    <ListView fx:id="userListView" style="-fx-background-color: #2f3136; -fx-text-fill: white;" />
+                </ScrollPane>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

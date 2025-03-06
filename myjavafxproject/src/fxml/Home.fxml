@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+    
+    <!-- Top Menu Bar -->
+    <top>
+        <MenuBar style="-fx-background-color: #202225; -fx-padding: 5;">
+            <Menu disable="true" style="-fx-text-fill: white; -fx-font-size: 16px;" text="FAKE DISCORD" />
+        </MenuBar>
+    </top>
+    
+    <!-- Most Left Sidebar -->
+    <left>
+        <VBox spacing="10" style="-fx-background-color: #202225; -fx-padding: 10; -fx-alignment: top-center;">
+            <!-- Home Button (Display Only) -->
+            <Button fx:id="homeButton" disable="true" styleClass="round-button" text="H" />
+            
+            <!-- Button to go to Direct Message -->
+            <Button fx:id="directMessageButton" onAction="#goToDirectMessage" styleClass="round-button" text="D" />
+            
+            <!-- Button to go to Server -->
+            <Button fx:id="serverButton" onAction="#goToServer" styleClass="round-button" text="S" />
+            
+            <!-- Spacer to push the logout button to the bottom -->
+            <Region VBox.vgrow="ALWAYS" />
+            
+            <!-- Logout Button -->
+            <Button fx:id="logoutButton" onAction="#logout" style="-fx-background-color: #ff5555; -fx-text-fill: white; -fx-shape: 'M 50,25 A 25,25 0 1,1 50,24 Z'; -fx-min-width: 50px; -fx-min-height: 50px;" text="O" />
+        </VBox>
+    </left>
+
+    <!-- Middle Right Sidebar for Friend List and Friend Requests -->
+    <center>
+        <HBox>
+            <VBox spacing="10" style="-fx-background-color: #2f3136; -fx-padding: 10; -fx-alignment: top-center; -fx-pref-width: 250;">
+                <!-- Friend Request Section -->
+                <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Add Friend">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <HBox spacing="5">
+                    <TextField fx:id="friendUsernameField" promptText="Username#ID" style="-fx-pref-width: 150;" />
+                    <Button onAction="#sendFriendRequest" style="-fx-background-color: #5865F2; -fx-text-fill: white;" text="+" />
+                </HBox>
+                
+                <!-- Friend List -->
+                <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Friends" />
+                <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: transparent;">
+<ListView fx:id="friendListView" style="-fx-background-color: #2f3136; -fx-text-fill: white; -fx-pref-height: 150;" />
+
+                </ScrollPane>
+            </VBox>
+            
+            <!-- Right Sidebar for Profile and Invitations -->
+            <VBox spacing="10" style="-fx-background-color: #36393F; -fx-padding: 10; -fx-alignment: top-center; -fx-pref-width: 250;">
+                <!-- User Profile Section -->
+                <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Your Profile">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <HBox spacing="10" style="-fx-alignment: center;">
+                    <ImageView fx:id="profilePicture" fitHeight="50" fitWidth="50" style="-fx-background-radius: 50;" />
+                    <VBox>
+                        <Label fx:id="profileName" style="-fx-text-fill: white; -fx-font-size: 12px;" text="Username" />
+                        <Label fx:id="profileId" style="-fx-text-fill: gray; -fx-font-size: 10px;" text="#1234" />
+                    </VBox>
+                </HBox>
+                <Button onAction="#changeProfilePicture" style="-fx-background-color: #5865F2; -fx-text-fill: white;" text="Change Profile Picture" />
+                
+                <!-- Invitations Section -->
+                <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Friend Requests" />
+                <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: transparent;">
+                    <ListView fx:id="friendRequestsList" style="-fx-background-color: #2f3136; -fx-text-fill: white; -fx-pref-height: 100;" />
+                </ScrollPane>
+                <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Invitations" />
+                <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: transparent;">
+                    <ListView fx:id="serverInvitesList" style="-fx-background-color: #2f3136; -fx-text-fill: white; -fx-pref-height: 100;" />
+                </ScrollPane>   
+            </VBox>
+        </HBox>  
+    </center>  
+</BorderPane>
